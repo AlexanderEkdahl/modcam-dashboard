@@ -1,9 +1,8 @@
 {
-  "name": "reactjs-boilerplate",
-  "version": "2.4.0",
-  "description": "Quick setup for new React.js applications featuring Redux, hot–reloading, PostCSS, react-router and Mocha.",
+  "name": "modcam",
+  "private": true,
+  "version": "1.0.0",
   "dependencies": {
-    "fontfaceobserver": "^1.5.1",
     "history": "^1.13.1",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
@@ -50,18 +49,13 @@
     "webpack": "^1.12.1",
     "webpack-dev-server": "^1.11.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/mxstbr/react-boilerplate.git"
-  },
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --recursive tests",
     "start": "NODE_ENV=development node webpack/server.dev.js",
     "build": "npm run test && NODE_ENV=production webpack --config webpack/webpack.prod.config.js --progress --colors -p",
     "serve": "NODE_ENV=production node webpack/server.prod.js",
     "pagespeed": "./webpack/pagespeed",
-    "initProject": "NODE_ENV=initialisation ./webpack/init"
+    "clean": "rm -r build/"
   },
-  "author": "Max Stoiber",
-  "license": "MIT"
+  "author": "Alexander Ekdahl"
 }

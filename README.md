@@ -41,16 +41,6 @@ Now you can go to `http://localhost:3000` and see your app!
 
 2. Upload the contents of the `build` folder to your web server.
 
-### Server Configuration
-
-#### Apache
-
-This boilerplate includes a `.htaccess` file that does two things:
-
-1. Redirect all traffic to HTTPS because ServiceWorker only works for encrypted traffic
-
-2. Rewrite all pages (e.g. yourdomain.com/subpage) to the `index.html` to let `react-router` take care of presenting the correct page
-
 ## Structure
 
 As a developer making an application, check out the `app/` and the `tests/` folder and the files inside those. The rest of the folders and files is only there to make your life making your app much easier, and should not have to be touched. (If they have to be changed, please submit an issue with the reason for your change!)
