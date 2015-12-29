@@ -1,5 +1,6 @@
 import expect from 'expect';
 import homeReducer from '../app/js/reducers/homeReducer';
+import chartReducer from '../app/js/reducers/chartReducer';
 import * as constants from '../app/js/constants/AppConstants';
 
 // Test Reducer
@@ -38,5 +39,113 @@ describe('defaultReducer', () => {
     ).toEqual({
       projectName: name
     });
+  });
+});
+
+describe('chartReducer', () => {
+  it('should handle the SWAP_CHART_ACTIVE action', () => {
+    const id = 1
+
+    expect(
+      chartReducer(
+        [
+          {
+            id: 1,
+            name: "Skybar Väst",
+            active: false
+          }
+        ],
+        {
+          type: constants.SWAP_CHART_ACTIVE,
+          id
+        }
+      )
+    ).toEqual(
+      [
+        {
+          id: 1,
+          name: "Skybar Väst",
+          active: true
+        }
+      ]
+    );
+
+    expect(
+      chartReducer(
+        [
+          {
+            id: 1,
+            name: "Skybar Väst",
+            active: true
+          }
+        ],
+        {
+          type: constants.SWAP_CHART_ACTIVE,
+          id
+        }
+      )
+    ).toEqual(
+      [
+        {
+          id: 1,
+          name: "Skybar Väst",
+          active: false
+        }
+      ]
+    );
+  });
+
+  it('should handle the HOVER_CHART action', () => {
+    const id = 4
+
+    expect(
+      chartReducer(
+        [
+          {
+            id: id,
+            hover: false
+          }
+        ],
+        {
+          type: constants.HOVER_CHART,
+          id
+        }
+      )
+    ).toEqual(
+      [
+        {
+          id: id,
+          hover: true
+        }
+      ]
+    );
+  });
+
+  it('should handle the UNHOVER_CHART action', () => {
+    const id = 42
+
+    expect(
+      chartReducer(
+        [
+          {
+            id: id,
+            name: "Test",
+            hover: true
+          }
+        ],
+        {
+          type: constants.UNHOVER_CHART,
+          id
+        }
+      )
+    ).toEqual(
+      [
+        {
+          id: id,
+          name: "Test",
+          hover: false
+        }
+      ]
+    );
   });
 });

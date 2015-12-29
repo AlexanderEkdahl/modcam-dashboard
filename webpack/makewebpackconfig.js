@@ -68,8 +68,6 @@ module.exports = function(options) {
     ]
   }
 
-  plugins.push(new AppCachePlugin());
-
   return {
     entry: entry,
     output: { // Compile into js/build.js

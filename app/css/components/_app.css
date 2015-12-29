@@ -1,0 +1,14 @@
+.app {
+  min-height: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.app .nav {
+  background-color: $navigation-color;
+  min-width: 244px;
+}
+
+.app .content {
+  padding: 10px;
+}

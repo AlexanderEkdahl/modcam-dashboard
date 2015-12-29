@@ -4,10 +4,9 @@
  */
 
 import homeReducer from './homeReducer';
+import chartReducer from './chartReducer';
 
-// Replace line below once you have several reducers with
-// import { combineReducers } from 'redux';
-// const rootReducer = combineReducers({ homeReducer, yourReducer })
-const rootReducer = homeReducer;
+import { combineReducers } from 'redux';
+const rootReducer = combineReducers({ homeReducer, chartReducer })
 
 export default rootReducer;
