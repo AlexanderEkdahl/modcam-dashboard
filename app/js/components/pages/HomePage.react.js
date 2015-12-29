@@ -20,14 +20,10 @@ function HomePage(props) {
       <label className="home__label">Change to your name:
         <input className="home__input" type="text" onChange={(evt) => { dispatch(asyncChangeOwnerName(evt.target.value)); }} defaultValue="mxstbr" value={ownerName} />
       </label>
-      <Link className="btn" to="/readme">Setup</Link>
 		</div>
 	);
 }
 
-// REDUX STUFF
-
-// Which props do we want to inject, given the global state?
 function select(state) {
   return {
     data: state

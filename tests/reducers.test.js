@@ -1,7 +1,6 @@
 import expect from 'expect';
 import homeReducer from '../app/js/reducers/homeReducer';
 import chartReducer from '../app/js/reducers/chartReducer';
-import * as constants from '../app/js/constants/AppConstants';
 
 // Test Reducer
 describe('defaultReducer', () => {
@@ -19,7 +18,7 @@ describe('defaultReducer', () => {
 
     expect(
       homeReducer({}, {
-        type: constants.CHANGE_OWNER_NAME,
+        type: 'CHANGE_OWNER_NAME',
         name
       })
     ).toEqual({
@@ -33,7 +32,7 @@ describe('defaultReducer', () => {
 
     expect(
       homeReducer({}, {
-        type: constants.CHANGE_PROJECT_NAME,
+        type: 'CHANGE_PROJECT_NAME',
         name
       })
     ).toEqual({
@@ -56,7 +55,7 @@ describe('chartReducer', () => {
           }
         ],
         {
-          type: constants.SWAP_CHART_ACTIVE,
+          type: 'SWAP_CHART_ACTIVE',
           id
         }
       )
@@ -80,7 +79,7 @@ describe('chartReducer', () => {
           }
         ],
         {
-          type: constants.SWAP_CHART_ACTIVE,
+          type: 'SWAP_CHART_ACTIVE',
           id
         }
       )
@@ -107,7 +106,7 @@ describe('chartReducer', () => {
           }
         ],
         {
-          type: constants.HOVER_CHART,
+          type: 'HOVER_CHART',
           id
         }
       )
@@ -134,7 +133,7 @@ describe('chartReducer', () => {
           }
         ],
         {
-          type: constants.UNHOVER_CHART,
+          type: 'UNHOVER_CHART',
           id
         }
       )

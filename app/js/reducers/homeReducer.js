@@ -13,7 +13,6 @@
  * add it in the rootReducer.js.
  */
 
-import { CHANGE_OWNER_NAME, CHANGE_PROJECT_NAME } from '../constants/AppConstants';
 const assign = Object.assign || require('object.assign'); // Polyfill maybe needed for browser support
 
 const initialState = {
@@ -24,11 +23,11 @@ const initialState = {
 function homeReducer(state = initialState, action) {
   Object.freeze(state);
   switch (action.type) {
-    case CHANGE_OWNER_NAME:
+    case 'CHANGE_OWNER_NAME':
       return assign({}, state, {
         ownerName: action.name
       });
-    case CHANGE_PROJECT_NAME:
+    case 'CHANGE_PROJECT_NAME':
       return assign({}, state, {
         projectName: action.name
       });

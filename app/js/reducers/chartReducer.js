@@ -13,8 +13,6 @@
  * add it in the rootReducer.js.
  */
 
-import { SWAP_CHART_ACTIVE, HOVER_CHART, UNHOVER_CHART } from '../constants/AppConstants';
-
 const initialState = [
   {
     id: 1,
@@ -88,15 +86,15 @@ const initialState = [
 function chartReducer(state = initialState, action) {
   Object.freeze(state);
   switch (action.type) {
-    case SWAP_CHART_ACTIVE:
+    case 'SWAP_CHART_ACTIVE':
       return state.map((chart) => {
         return chart.id === action.id ? Object.assign({}, chart, { active: !chart.active}) : chart
       })
-    case HOVER_CHART:
+    case 'HOVER_CHART':
       return state.map((chart) => {
         return chart.id === action.id ? Object.assign({}, chart, { hover: true }) : chart
       })
-    case UNHOVER_CHART:
+    case 'UNHOVER_CHART':
       return state.map((chart) => {
         return chart.id === action.id ? Object.assign({}, chart, { hover: false }) : chart
       })
