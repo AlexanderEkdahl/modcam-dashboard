@@ -1,18 +1,3 @@
-/*
- * The reducer takes care of our data
- * Using actions, we can change our application state
- * To add a new action, add it to the switch statement in the chartReducer function
- *
- * Example:
- * case YOUR_ACTION_CONSTANT:
- *   return assign({}, state, {
- *       stateVariable: action.var
- *   });
- *
- * To add a new reducer, add a file like this to the reducers folder, and
- * add it in the rootReducer.js.
- */
-
 const initialState = [
   {
     id: 1,
@@ -83,7 +68,7 @@ const initialState = [
   }
 ];
 
-function chartReducer(state = initialState, action) {
+function reducer(state = initialState, action) {
   Object.freeze(state);
   switch (action.type) {
     case 'SWAP_CHART_ACTIVE':
@@ -103,4 +88,4 @@ function chartReducer(state = initialState, action) {
   }
 }
 
-export default chartReducer;
+export default reducer;

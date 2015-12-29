@@ -1,52 +1,12 @@
 import expect from 'expect';
-import homeReducer from '../app/js/reducers/homeReducer';
-import chartReducer from '../app/js/reducers/chartReducer';
+import reducer from '../app/js/reducer';
 
-// Test Reducer
-describe('defaultReducer', () => {
-  // Test that the initial state is returning correctly
-  it('should return the initial state', () => {
-    expect(homeReducer(undefined, {})).toEqual({
-      projectName: 'React.js Boilerplate',
-      ownerName: 'mxstbr'
-    });
-  });
-
-  // Test that it handles changing the owner correctly
-  it('should handle the CHANGE_OWNER_NAME action', () => {
-    const name = 'samsmith';
-
-    expect(
-      homeReducer({}, {
-        type: 'CHANGE_OWNER_NAME',
-        name
-      })
-    ).toEqual({
-      ownerName: name
-    });
-  });
-
-  // Test that it handles changing the project name correctly
-  it('should handle the CHANGE_PROJECT_NAME action', () => {
-    const name = 'Webapplication Boilerplate';
-
-    expect(
-      homeReducer({}, {
-        type: 'CHANGE_PROJECT_NAME',
-        name
-      })
-    ).toEqual({
-      projectName: name
-    });
-  });
-});
-
-describe('chartReducer', () => {
+describe('reducer', () => {
   it('should handle the SWAP_CHART_ACTIVE action', () => {
     const id = 1
 
     expect(
-      chartReducer(
+      reducer(
         [
           {
             id: 1,
@@ -70,7 +30,7 @@ describe('chartReducer', () => {
     );
 
     expect(
-      chartReducer(
+      reducer(
         [
           {
             id: 1,
@@ -98,7 +58,7 @@ describe('chartReducer', () => {
     const id = 4
 
     expect(
-      chartReducer(
+      reducer(
         [
           {
             id: id,
@@ -124,7 +84,7 @@ describe('chartReducer', () => {
     const id = 42
 
     expect(
-      chartReducer(
+      reducer(
         [
           {
             id: id,

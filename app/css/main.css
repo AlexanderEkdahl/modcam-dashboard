@@ -1,10 +1,9 @@
 @charset 'UTF-8';
 
-/* 2. Configuration and helpers */
-@import 'utils/*.css';
+$font-family: "Avenir Next", sans-serif;
+$background-color: #F9F9F9;
+$navigation-color: #1A1A1C;
+$navigation-inner-color: #202021;
 
-/* 3. Base stuff */
 @import 'base/*.css';
-
-/* 5. Components */
 @import 'components/*.css';

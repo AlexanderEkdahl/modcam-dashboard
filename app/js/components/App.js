@@ -9,11 +9,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChartSelector from './ChartSelector';
-import { Link } from 'react-router';
-import { hoverChart, unhoverChart, swapChartActive } from '../actions/AppActions'
+import { hoverChart, unhoverChart, swapChartActive } from '../actions'
 
 function App(props) {
-  const { dispatch, charts, children } = props;
+  const { dispatch, charts } = props;
 
   return (
     <div className="app">
@@ -31,7 +30,6 @@ function App(props) {
           } />
       </div>
       <div className="content">
-        { children }
       </div>
     </div>
   );
@@ -39,7 +37,7 @@ function App(props) {
 
 function select(state) {
   return {
-    charts: state.chartReducer
+    charts: state
   };
 }
 
