@@ -1,0 +1,7 @@
+.heatmap {
+  position: relative;
+}
+
+.heatmap > canvas {
+  position: absolute;
+}

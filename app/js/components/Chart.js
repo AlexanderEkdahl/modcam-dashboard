@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
 import BarChart from './BarChart';
-import { Counter } from './Counter';
+import Counter from './Counter';
+import Heatmap from './Heatmap';
 
 export default class Chart extends Component {
   render() {
+    let chart;
+
+    if (this.props.chart_type == "barchart") {
+      chart = (
+        <BarChart
+          {...this.props}
+          margins={{top: 40, left: 40, bottom: 40, right: 40}}
+        />
+      );
+    } else {
+      chart = (
+        <Heatmap />
+      )
+    }
+
     return (
       <section className="chart" ref="chart">
         <header>
@@ -16,10 +32,7 @@ export default class Chart extends Component {
             )}
           </div>
         </header>
-        <BarChart
-          {...this.props}
-          margins={{top: 40, left: 40, bottom: 40, right: 40}}
-        />
+        {chart}
       </section>
     )
   }

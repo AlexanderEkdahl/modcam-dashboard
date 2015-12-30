@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Counter } from './Counter';
+import Counter from './Counter';
 
 export class ChartSelectorButton extends Component {
   render() {

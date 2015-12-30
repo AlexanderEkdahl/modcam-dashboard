@@ -5,11 +5,12 @@ const initialState = [
   {
     id: 1,
     name: "Skybar Väst",
-    active: true,
+    active: false,
     hover: false,
     red: 1,
     green: 253,
     blue: 255,
+    chart_type: "barchart",
     counters: [
       {
         name: "Today",
@@ -39,6 +40,7 @@ const initialState = [
     red: 8,
     green: 249,
     blue: 130,
+    chart_type: "barchart",
     counters: [
       {
         name: "Today",
@@ -63,11 +65,12 @@ const initialState = [
   {
     id: 3,
     name: "Malmö Floor",
-    active: true,
+    active: false,
     hover: false,
     red: 255,
     green: 130,
     blue: 0,
+    chart_type: "heatmap",
     counters: [
       {
         name: "Yesterday",
