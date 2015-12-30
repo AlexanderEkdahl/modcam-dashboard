@@ -5,7 +5,7 @@ const initialState = [
   {
     id: 1,
     name: "Skybar Väst",
-    active: false,
+    active: true,
     hover: false,
     red: 1,
     green: 253,
@@ -63,7 +63,7 @@ const initialState = [
   {
     id: 3,
     name: "Malmö Floor",
-    active: false,
+    active: true,
     hover: false,
     red: 255,
     green: 130,

@@ -13,7 +13,7 @@ import Chart from './Chart';
 import { hoverChart, unhoverChart, swapChartActive } from '../actions'
 
 function App(props) {
-  const { dispatch, charts } = props;
+  const { dispatch, charts, activeCharts } = props;
 
   return (
     <div className="app">
@@ -31,7 +31,7 @@ function App(props) {
           } />
       </div>
       <div className="content">
-        {charts.map(function(chart, i) {
+        {activeCharts.map(function(chart, i) {
           return <Chart {...chart} key={i} />;
         })}
       </div>
@@ -41,7 +41,8 @@ function App(props) {
 
 function select(state) {
   return {
-    charts: state
+    charts: state,
+    activeCharts: state.filter(chart => chart.active),
   };
 }
 
