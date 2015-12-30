@@ -9,6 +9,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChartSelector from './ChartSelector';
+import Chart from './Chart';
 import { hoverChart, unhoverChart, swapChartActive } from '../actions'
 
 function App(props) {
@@ -30,6 +31,9 @@ function App(props) {
           } />
       </div>
       <div className="content">
+        {charts.map(function(chart, i) {
+          return <Chart {...chart} key={i} />;
+        })}
       </div>
     </div>
   );

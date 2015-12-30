@@ -1,3 +1,6 @@
+import { range } from 'd3-array';
+import { normal } from 'd3-random';
+
 const initialState = [
   {
     id: 1,
@@ -20,7 +23,13 @@ const initialState = [
         name: "Month",
         value: 876
       }
-    ]
+    ],
+    data: range(8).map(d => {
+      return {
+        x: d + 6,
+        y: Math.abs(normal(100, 200)())
+      };
+    })
   },
   {
     id: 2,
@@ -43,7 +52,13 @@ const initialState = [
         name: "Month",
         value: 452
       }
-    ]
+    ],
+    data: range(8).map(d => {
+      return {
+        x: d + 6,
+        y: Math.abs(normal(100, 200)())
+      };
+    })
   },
   {
     id: 3,
@@ -57,14 +72,20 @@ const initialState = [
       {
         name: "Yesterday",
         value: "+3%",
-        vs: "vs"
+        sub: "vs"
       },
       {
         name: "Last monday",
         value: "+5%",
-        vs: "vs"
+        sub: "vs"
       }
-    ]
+    ],
+    data: range(8).map(d => {
+      return {
+        x: d + 6,
+        y: Math.abs(normal(100, 200)())
+      };
+    })
   }
 ];
 
