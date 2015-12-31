@@ -7,6 +7,7 @@
 .app .nav {
   background-color: $navigation-color;
   min-width: 244px;
+  user-select: none;
 }
 
 .app .content {

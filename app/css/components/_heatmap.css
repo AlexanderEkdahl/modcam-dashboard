@@ -2,6 +2,12 @@
   position: relative;
 }
 
-.heatmap > canvas {
+.heatmap > canvas{
   position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.heatmap > img {
+  display: block;
 }

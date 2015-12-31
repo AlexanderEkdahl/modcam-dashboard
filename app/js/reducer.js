@@ -1,10 +1,14 @@
 import { range } from 'd3-array';
 import { normal } from 'd3-random';
+import { format } from 'd3-format';
+import Floor from '../images/floor.png';
+import HeatmapData from './data';
 
+// TODO: Move formatting to the views
 const initialState = [
   {
     id: 1,
-    name: "Skybar Väst",
+    name: "West Wing",
     active: false,
     hover: false,
     red: 1,
@@ -14,15 +18,15 @@ const initialState = [
     counters: [
       {
         name: "Today",
-        value: 16
+        value: format(",.0f")(normal(20, 4)())
       },
       {
         name: "Week",
-        value: 154
+        value: format(",.0f")(normal(160, 20)())
       },
       {
         name: "Month",
-        value: 876
+        value: format(",.0f")(normal(1000, 100)())
       }
     ],
     data: range(8).map(d => {
@@ -34,7 +38,7 @@ const initialState = [
   },
   {
     id: 2,
-    name: "Skybar Öst",
+    name: "East Wing",
     active: false,
     hover: false,
     red: 8,
@@ -44,15 +48,15 @@ const initialState = [
     counters: [
       {
         name: "Today",
-        value: 13
+        value: format(",.0f")(normal(13, 4)())
       },
       {
         name: "Week",
-        value: 145
+        value: format(",.0f")(normal(140, 20)())
       },
       {
         name: "Month",
-        value: 452
+        value: format(",.0f")(normal(500, 100)())
       }
     ],
     data: range(8).map(d => {
@@ -64,7 +68,7 @@ const initialState = [
   },
   {
     id: 3,
-    name: "Malmö Floor",
+    name: "Palais Lanckoroński",
     active: false,
     hover: false,
     red: 255,
@@ -74,21 +78,19 @@ const initialState = [
     counters: [
       {
         name: "Yesterday",
-        value: "+3%",
+        value: format("+.0%")(normal(0, 0.03)()),
         sub: "vs"
       },
       {
         name: "Last monday",
-        value: "+5%",
+        value: format("+.0%")(normal(0.04, 0.02)()),
         sub: "vs"
       }
     ],
-    data: range(8).map(d => {
-      return {
-        x: d + 6,
-        y: Math.abs(normal(100, 200)())
-      };
-    })
+    data: HeatmapData,
+    image: Floor,
+    dimension_x: 1000,
+    dimension_y: 600,
   }
 ];
 

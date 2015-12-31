@@ -16,7 +16,13 @@ export default class Chart extends Component {
       );
     } else {
       chart = (
-        <Heatmap />
+        <div style={{margin: 25}}>
+          <Heatmap
+            dimensionX={this.props.dimension_x}
+            dimensionY={this.props.dimension_y}
+            image={this.props.image}
+            data={this.props.data}/>
+        </div>
       )
     }
 

@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
-import heatmapData from './data';
-import { linear, rainbow } from 'd3-scale';
+import { linear } from 'd3-scale';
 import Dimensions from 'react-dimensions'
 
 class Renderer {
-  constructor(width, height, canvas) {
-    this.width = width;
-    this.height = height;
+  constructor(width, height, dimensionX, dimensionY, canvas) {
     this.canvas = canvas;
-    this.ctx = canvas.getContext('2d'); // optmization?
+    this.ctx = canvas.getContext('2d');
     this.data = [];
-    this.xScale = linear().domain([0, 1000]).range([0, this.width]);
-    this.yScale = linear().domain([0, 600]).range([0, this.height]);
+    this.xScale = linear();
+    this.yScale = linear();
+    this.resize(width, height, dimensionX, dimensionY);
   }
 
   add(point) {
@@ -22,11 +20,11 @@ class Renderer {
     this.data = [];
   }
 
-  resize(width, height) {
+  resize(width, height, dimensionX, dimensionY) {
     this.width = width;
     this.height = height;
-    this.xScale.range([0, this.width]);
-    this.yScale.range([0, this.height]);
+    this.xScale.domain([0, dimensionX]).range([0, this.width]);
+    this.yScale.domain([0, dimensionY]).range([0, this.height]);
   }
 
   radius(r = 25, blur = r * 2) {
@@ -96,32 +94,60 @@ class Renderer {
   }
 }
 
-export default class Heatmap extends Component {
+class Heatmap extends Component {
   componentDidMount() {
-    this.heat = new Renderer(this.props.containerWidth-40, this.props.containerWidth / 1.6, this.refs.canvas);
-    this.heat.data = heatmapData;
+    // console.log("componentDidMount");
+    this.heat = new Renderer(
+      this.props.containerWidth,
+      this.props.containerWidth * this.ratio(),
+      this.props.dimensionX,
+      this.props.dimensionY,
+      this.refs.canvas);
+    this.heat.data = this.props.data;
 
-    console.time('Heatmap');
+    // console.time('Heatmap draw');
     this.heat.draw();
-    console.timeEnd('Heatmap');
+    // console.timeEnd('Heatmap draw');
+  }
+
+  shouldComponentUpdate() {
+    // Currently the canvas is redrawn on every interaction
+    // should only redraw if sizes or data has changed
+    return true;
   }
 
   componentDidUpdate() {
-    this.heat.resize(this.props.containerWidth-40, this.props.containerWidth / 1.6)
+    // console.log("componentDidUpdate");
+    this.heat.resize(
+      this.props.containerWidth,
+      this.props.containerWidth * this.ratio(),
+      this.props.dimensionX,
+      this.props.dimensionY
+    )
 
-    console.time('Heatmap');
+    // console.time('Heatmap');
     this.heat.draw();
-    console.timeEnd('Heatmap');
+    // console.timeEnd('Heatmap');
   }
 
   componentWillUnmount() {
+    // console.log("componentWillUnmount");
+    this.heat = null;
+    delete this.heat;
+  }
 
+  ratio(){
+    return this.props.dimensionY / this.props.dimensionX;
   }
 
   render() {
     return (
-      <div className="heatmap" style={{height: this.props.containerWidth / 1.6, margin: 20}}>
-        <canvas ref="canvas" width={this.props.containerWidth-40} height={this.props.containerWidth / 1.6}></canvas>
+      <div className="heatmap">
+        <img src={this.props.image} width="100%"/>
+        <canvas
+          ref="canvas"
+          width={this.props.containerWidth}
+          height={this.props.containerWidth * this.ratio()}></canvas>
       </div>
     );
   }
