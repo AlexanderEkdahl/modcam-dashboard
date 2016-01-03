@@ -1,43 +1,56 @@
-/**
- *
- * App.react.js
- *
- * This component is the skeleton around the actual pages, and should only
- * contain code that should be seen on all pages. (e.g. navigation bar)
- */
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChartSelector from './ChartSelector';
 import Chart from './Chart';
-import { hoverChart, unhoverChart, swapChartActive } from '../actions'
+import { hoverChart, unhoverChart, swapChartActive } from '../actions';
+import Radium from 'radium';
 
-function App(props) {
-  const { dispatch, charts, activeCharts } = props;
+class App extends Component {
+  render() {
+    const { dispatch, charts, activeCharts } = this.props;
 
-  return (
-    <div className="app">
-      <div className="nav">
-        <ChartSelector
-          charts={charts}
-          onButtonMouseEnter={id =>
-            dispatch(hoverChart(id))
-          }
-          onButtonMouseLeave={id =>
-            dispatch(unhoverChart(id))
-          }
-          onButtonClick={id =>
-            dispatch(swapChartActive(id))
-          } />
+    return (
+      <div style={styles.base}>
+        <div style={styles.nav}>
+          <ChartSelector
+            charts={charts}
+            onButtonMouseEnter={id =>
+              dispatch(hoverChart(id))
+            }
+            onButtonMouseLeave={id =>
+              dispatch(unhoverChart(id))
+            }
+            onButtonClick={id =>
+              dispatch(swapChartActive(id))
+            } />
+        </div>
+        <div style={styles.content}>
+          {activeCharts.map(function(chart, i) {
+            return <Chart {...chart} key={i} />;
+          })}
+        </div>
       </div>
-      <div className="content">
-        {activeCharts.map(function(chart, i) {
-          return <Chart {...chart} key={i} />;
-        })}
-      </div>
-    </div>
-  );
+    );
+  }
 }
+
+var styles = {
+  base: {
+    minHeight: '100%',
+    display: 'flex',
+    alignItems: 'stretch',
+  },
+
+  nav: {
+    backgroundColor: '#1A1A1C',
+    minWidth: 244,
+    userSelect: 'none',
+  },
+
+  content: {
+    flexGrow: 1,
+  },
+};
 
 function select(state) {
   return {
@@ -46,4 +59,4 @@ function select(state) {
   };
 }
 
-export default connect(select)(App);
+export default connect(select)(Radium(App));

@@ -1,22 +1,6 @@
 @charset 'UTF-8';
 
-$font-family: "Avenir Next", sans-serif;
-$background-color: #F9F9F9;
 $navigation-color: #1A1A1C;
 $navigation-inner-color: #202021;
-
-html {
-  font-family: $font-family;
-  background-color: $background-color;
-}
-
-body {
-  margin: 0;
-}
-
-html, body, #app {
-  height: 100%;
-}
-
 
 @import 'components/*.css';

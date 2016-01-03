@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { linear, band } from 'd3-scale';
 import { max, range } from 'd3-array';
 import Dimensions from 'react-dimensions'
+import Radium from 'radium';
 
 class BarChart extends Component {
   render() {
@@ -30,17 +31,27 @@ class BarChart extends Component {
           width={xScale.bandwidth()}
           x={xScale(point.x)}
           fill={rgb}
-          key={i} />
+          key={i}
+          style={styles.rect} />
       )
     });
 
-    let yAxis = yScale.ticks(6).map((tick, i) => {
+    let yAxis = yScale.ticks(6).splice(1).map((tick, i) => {
+      if (i % 2) {
+        return (
+          <g key={i} transform={"translate(0, " + yScale(tick) + ")"}>
+            <line x2={width} style={styles.axisYLine}/>
+            <text dy=".32em" style={[styles.axisText, styles.axisYText]} x="-10">{tick}</text>
+          </g>
+        );
+      }
       return (
-        <g key={i} transform={"translate(0, " + yScale(tick) + ")"}>
-          <line x2={width}/>
-          <text dy=".32em" style={{textAnchor: "end"}} x="-10">{tick}</text>
-        </g>
-      )
+        <line
+          key={i}
+          x2={width}
+          style={[styles.axisYLine, styles.axisYLineOdd]}
+          transform={"translate(0, " + yScale(tick) + ")"} />
+      );
     });
 
     let xAxis = props.data.map((tick, i) => {
@@ -49,8 +60,8 @@ class BarChart extends Component {
           transform={"translate(" + xScale(tick.x) + ", " + height + ")"}
           dy=".71em"
           y="9"
-          x={xScale.bandwidth() / 2 + "px"}
-          style={{textAnchor: "middle"}}
+          x={xScale.bandwidth() / 2}
+          style={[styles.axisText, styles.axisXText]}
           key={i}>{tick.x}</text>
       );
     });
@@ -70,4 +81,31 @@ class BarChart extends Component {
   }
 }
 
-export default Dimensions()(BarChart)
+var styles = {
+  rect: {
+    shapeRendering: 'crispEdges',
+  },
+
+  axisText: {
+    fontSize: 14,
+  },
+
+  axisYText: {
+    textAnchor: 'end',
+  },
+
+  axisXText: {
+    textAnchor: 'middle',
+  },
+
+  axisYLine: {
+    shapeRendering: 'crispEdges',
+    stroke: '#ddd',
+  },
+
+  axisYLineOdd: {
+    stroke: '#eee',
+  },
+}
+
+export default Dimensions()(Radium(BarChart))
