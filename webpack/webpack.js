@@ -3,7 +3,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = function(options) {
   var entry, plugins, cssLoaders;
@@ -12,7 +11,6 @@ module.exports = function(options) {
     entry = [
       path.join(__dirname, '..', 'app/js/index.js')
     ];
-    cssLoaders = ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader');
     plugins = [
       new webpack.optimize.UglifyJsPlugin({
         compress: {
@@ -35,7 +33,6 @@ module.exports = function(options) {
         },
         inject: true
       }),
-      new ExtractTextPlugin("css/main.css"),
       new webpack.DefinePlugin({
         "process.env": {
           NODE_ENV: JSON.stringify("production")
@@ -49,7 +46,6 @@ module.exports = function(options) {
       "webpack/hot/only-dev-server",
       path.join(__dirname, '..', 'app/js/index.js')
     ];
-    cssLoaders = 'style-loader!css-loader!postcss-loader';
     plugins = [
       new webpack.HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
@@ -71,33 +67,12 @@ module.exports = function(options) {
           loader: 'babel',
           exclude: path.join(__dirname, '..', '/node_modules/')
         }, {
-          test:   /\.css$/,
-          loader: cssLoaders
-        }, {
           test: /\.jpe?g$|\.gif$|\.png$/i,
           loader: "url-loader?limit=10000"
         }
       ]
     },
     plugins: plugins,
-    postcss: function() {
-      return [
-        require('postcss-import')({
-          glob: true,
-          onImport: function (files) {
-              files.forEach(this.addDependency);
-          }.bind(this)
-        }),
-        require('postcss-simple-vars')(),
-        require('postcss-focus')(),
-        require('autoprefixer')({
-          browsers: ['last 2 versions', 'IE > 9']
-        }),
-        require('postcss-reporter')({
-          clearMessages: true
-        })
-      ];
-    },
     target: "web",
     stats: false,
     progress: true

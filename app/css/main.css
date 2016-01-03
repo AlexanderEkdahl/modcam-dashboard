@@ -1,6 +1,0 @@
-@charset 'UTF-8';
-
-$navigation-color: #1A1A1C;
-$navigation-inner-color: #202021;
-
-@import 'components/*.css';

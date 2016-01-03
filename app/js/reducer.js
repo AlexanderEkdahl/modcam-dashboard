@@ -4,7 +4,7 @@ import { format } from 'd3-format';
 import Floor from '../images/floor.png';
 import HeatmapData from './data';
 
-// TODO: Move formatting to the views
+// TODO: Move D3 formatting to the views
 const initialState = [
   {
     id: 1,
@@ -100,14 +100,6 @@ function reducer(state = initialState, action) {
     case 'SWAP_CHART_ACTIVE':
       return state.map((chart) => {
         return chart.id === action.id ? Object.assign({}, chart, { active: !chart.active}) : chart
-      })
-    case 'HOVER_CHART':
-      return state.map((chart) => {
-        return chart.id === action.id ? Object.assign({}, chart, { hover: true }) : chart
-      })
-    case 'UNHOVER_CHART':
-      return state.map((chart) => {
-        return chart.id === action.id ? Object.assign({}, chart, { hover: false }) : chart
       })
     default:
       return state;

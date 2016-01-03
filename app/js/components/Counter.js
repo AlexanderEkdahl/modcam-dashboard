@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import Radium from 'radium';
 
-export default class Counter extends Component {
+class Counter extends Component {
   render() {
+    let styles = this.props.styles;
     return (
-      <div className="counter">
-        <span className="value">{this.props.value}</span>
-        <span className="sub">{this.props.sub}</span>
-        <span className="name">{this.props.name}</span>
+      <div style={styles.base}>
+        <span style={[styles.span, styles.value]}>{this.props.value}</span>
+        <span style={[styles.span, styles.sub]}>{this.props.sub}</span>
+        <span style={[styles.span, styles.name]}>{this.props.name}</span>
       </div>
     );
   }
 }
+
+export default Radium(Counter);

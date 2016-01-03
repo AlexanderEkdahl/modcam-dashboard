@@ -14,12 +14,6 @@ class App extends Component {
         <div style={styles.nav}>
           <ChartSelector
             charts={charts}
-            onButtonMouseEnter={id =>
-              dispatch(hoverChart(id))
-            }
-            onButtonMouseLeave={id =>
-              dispatch(unhoverChart(id))
-            }
             onButtonClick={id =>
               dispatch(swapChartActive(id))
             } />
