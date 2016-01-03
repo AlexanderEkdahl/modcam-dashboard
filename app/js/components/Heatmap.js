@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { linear } from 'd3-scale';
-import Dimensions from 'react-dimensions'
+import Dimensions from 'react-dimensions';
 
 class Renderer {
   constructor(width, height, dimensionX, dimensionY, canvas) {
@@ -142,12 +142,13 @@ class Heatmap extends Component {
 
   render() {
     return (
-      <div className="heatmap">
-        <img src={this.props.image} width="100%"/>
+      <div style={{position: 'relative'}}>
+        <img src={this.props.image} style={{width: '100%', display: 'block'}}/>
         <canvas
           ref="canvas"
           width={this.props.containerWidth}
-          height={this.props.containerWidth * this.ratio()}></canvas>
+          height={this.props.containerWidth * this.ratio()}
+          style={{position: 'absolute', top: 0}}></canvas>
       </div>
     );
   }
