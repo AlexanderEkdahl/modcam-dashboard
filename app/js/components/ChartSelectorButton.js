@@ -23,7 +23,7 @@ class ChartSelectorButton extends Component {
 
         ':hover': {
           borderColor: this.getBorderColor(0.5),
-        }
+        },
       },
 
       inner: {
@@ -49,7 +49,6 @@ class ChartSelectorButton extends Component {
         color: 'white',
         fontWeight: 100,
         fontSize: 12,
-        color: '#FFF',
       },
 
       counters: {
@@ -79,7 +78,7 @@ class ChartSelectorButton extends Component {
           textTransform: 'uppercase',
         },
       },
-    }
+    };
   }
 
   render() {
@@ -91,7 +90,7 @@ class ChartSelectorButton extends Component {
         <div style={[
           this.getStyles().inner,
           !this.props.active && this.getStyles().innerInactive,
-          Radium.getState(this.state, 'item', ':hover') && this.getStyles().innerInactiveHover
+          Radium.getState(this.state, 'item', ':hover') && this.getStyles().innerInactiveHover,
         ]}>
           <header style={this.getStyles().header}>{this.props.name}</header>
           <div style={this.getStyles().counters}>
@@ -101,7 +100,7 @@ class ChartSelectorButton extends Component {
           </div>
         </div>
       </section>
-    )
+    );
   }
 }
 

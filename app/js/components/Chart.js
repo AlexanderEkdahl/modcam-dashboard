@@ -8,7 +8,7 @@ class Chart extends Component {
   render() {
     let chart;
 
-    if (this.props.chart_type == "barchart") {
+    if (this.props.chart_type === 'barchart') {
       chart = (
         <BarChart
           {...this.props}
@@ -24,7 +24,7 @@ class Chart extends Component {
             image={this.props.image}
             data={this.props.data}/>
         </div>
-      )
+      );
     }
 
     return (
@@ -41,11 +41,11 @@ class Chart extends Component {
         </header>
         {chart}
       </section>
-    )
+    );
   }
 }
 
-var styles = {
+const styles = {
   base: {
     backgroundColor: 'white',
     padding: 16,
@@ -104,6 +104,6 @@ var styles = {
       textTransform: 'uppercase',
     },
   },
-}
+};
 
 export default Radium(Chart);

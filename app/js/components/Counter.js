@@ -3,7 +3,7 @@ import Radium from 'radium';
 
 class Counter extends Component {
   render() {
-    let styles = this.props.styles;
+    const styles = this.props.styles;
     return (
       <div style={styles.base}>
         <span style={[styles.span, styles.value]}>{this.props.value}</span>

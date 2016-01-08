@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChartSelector from './ChartSelector';
 import Chart from './Chart';
-import { hoverChart, unhoverChart, swapChartActive } from '../actions';
+import { swapChartActive } from '../actions';
 import Radium from 'radium';
 
 class App extends Component {
@@ -19,7 +19,7 @@ class App extends Component {
             } />
         </div>
         <div style={styles.content}>
-          {activeCharts.map(function(chart, i) {
+          {activeCharts.map((chart, i) => {
             return <Chart {...chart} key={i} />;
           })}
         </div>
@@ -28,7 +28,7 @@ class App extends Component {
   }
 }
 
-var styles = {
+const styles = {
   base: {
     minHeight: '100%',
     display: 'flex',

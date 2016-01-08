@@ -28,9 +28,9 @@ class Renderer {
   }
 
   radius(r = 25, blur = r * 2) {
-    let circle = this.circle = document.createElement('canvas'),
-        ctx = circle.getContext('2d'),
-        r2 = this.r = r + blur;
+    const circle = this.circle = document.createElement('canvas');
+    const ctx = circle.getContext('2d');
+    const r2 = this.r = r + blur;
 
     circle.width = circle.height = r2 * 2;
 
@@ -47,21 +47,21 @@ class Renderer {
   }
 
   gradient() {
-    this.grad = new Array(256*3);
+    this.grad = new Array(256 * 3);
 
-    let scale = linear()
+    const scale = linear()
       .domain([0, 140, 160, 190, 240, 255 ])
-      .range(["blue", "cyan", "lime", "yellow", "red"]);
+      .range(['blue', 'cyan', 'lime', 'yellow', 'red']);
 
-    for (var i = 0; i < 256; i++) {
-      var bigint = parseInt(scale(i).substr(1), 16);
-      var r = (bigint >> 16) & 255;
-      var g = (bigint >> 8) & 255;
-      var b = bigint & 255;
+    for (let i = 0; i < 256; i++) {
+      const bigint = parseInt(scale(i).substr(1), 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
 
-      this.grad[i*3 + 0] = r;
-      this.grad[i*3 + 1] = g;
-      this.grad[i*3 + 2] = b;
+      this.grad[i * 3 + 0] = r;
+      this.grad[i * 3 + 1] = g;
+      this.grad[i * 3 + 2] = b;
     }
   }
 
@@ -71,24 +71,24 @@ class Renderer {
 
     this.ctx.clearRect(0, 0, this.width, this.height);
 
-    for (var i = 0, len = this.data.length, p; i < len; i++) {
+    for (let i = 0, len = this.data.length, p; i < len; i++) {
       p = this.data[i];
       this.ctx.drawImage(this.circle, this.xScale(p[0]) - this.r, this.yScale(p[1]) - this.r);
     }
 
-    var colored = this.ctx.getImageData(0, 0, this.width, this.height);
+    const colored = this.ctx.getImageData(0, 0, this.width, this.height);
     this.colorize(colored.data, this.grad);
     this.ctx.putImageData(colored, 0, 0);
   }
 
   colorize(pixels, gradient) {
-    for (var i = 0, len = pixels.length, j; i < len; i += 4) {
+    for (let i = 0, len = pixels.length, j; i < len; i += 4) {
       j = pixels[i + 3] * 3;
 
       if (j) {
-          pixels[i + 0] = gradient[j + 0];
-          pixels[i + 1] = gradient[j + 1];
-          pixels[i + 2] = gradient[j + 2];
+        pixels[i + 0] = gradient[j + 0];
+        pixels[i + 1] = gradient[j + 1];
+        pixels[i + 2] = gradient[j + 2];
       }
     }
   }
@@ -96,7 +96,7 @@ class Renderer {
 
 class Heatmap extends Component {
   componentDidMount() {
-    // console.log("componentDidMount");
+    // console.log('componentDidMount');
     this.heat = new Renderer(
       this.props.containerWidth,
       this.props.containerWidth * this.ratio(),
@@ -117,13 +117,13 @@ class Heatmap extends Component {
   }
 
   componentDidUpdate() {
-    // console.log("componentDidUpdate");
+    // console.log('componentDidUpdate');
     this.heat.resize(
       this.props.containerWidth,
       this.props.containerWidth * this.ratio(),
       this.props.dimensionX,
       this.props.dimensionY
-    )
+    );
 
     // console.time('Heatmap');
     this.heat.draw();
@@ -131,12 +131,12 @@ class Heatmap extends Component {
   }
 
   componentWillUnmount() {
-    // console.log("componentWillUnmount");
+    // console.log('componentWillUnmount');
     this.heat = null;
     delete this.heat;
   }
 
-  ratio(){
+  ratio() {
     return this.props.dimensionY / this.props.dimensionX;
   }
 
@@ -154,4 +154,4 @@ class Heatmap extends Component {
   }
 }
 
-export default Dimensions()(Heatmap)
+export default Dimensions()(Heatmap);
