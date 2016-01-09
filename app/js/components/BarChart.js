@@ -3,6 +3,7 @@ import { linear, band } from 'd3-scale';
 import { max } from 'd3-array';
 import Dimensions from 'react-dimensions';
 import Radium from 'radium';
+import { format } from 'd3-format';
 
 class BarChart extends Component {
   render() {
@@ -25,14 +26,16 @@ class BarChart extends Component {
 
     const bars = props.data.map((point, i) => {
       return (
-        <rect
-          height={height - yScale(point.y)}
-          y={yScale(point.y)}
-          width={xScale.bandwidth()}
-          x={xScale(point.x)}
-          fill={rgb}
-          key={i}
-          style={styles.rect} />
+        <g key={i}>
+          <title>{format(',.0f')(point.y)}</title>
+          <rect
+            height={height - yScale(point.y)}
+            y={yScale(point.y)}
+            width={xScale.bandwidth()}
+            x={xScale(point.x)}
+            fill={rgb}
+            style={styles.rect} />
+        </g>
       );
     });
 
